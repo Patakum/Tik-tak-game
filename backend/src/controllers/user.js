@@ -8,3 +8,13 @@ const getAllUsers = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 }
+
+exports.createUser = async (req, res) => {
+    try {
+        const User = new user(req.body);
+        await User.save();
+        res.status(201).json(User);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
